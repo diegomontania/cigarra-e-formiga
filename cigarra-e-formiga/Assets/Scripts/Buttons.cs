@@ -65,7 +65,7 @@ public class Buttons : MonoBehaviour
         StartCoroutine(EnumratorBack());
     }
 	
-	#region EnumratorsDosLeveis
+	#region EnumratorsDosLevels
 	//enumerators para a troca de level ocorrer com um pequeno atraso e dar tempo do audio tocar.
 	IEnumerator EnumratorGame()
 	{

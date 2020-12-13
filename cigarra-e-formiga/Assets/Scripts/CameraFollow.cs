@@ -9,11 +9,11 @@ public class CameraFollow : MonoBehaviour
 	public Transform player;
 
 	//camera delay = tempo de atraso
-	public static float smooth = 0.2f;
+	public static float smooth = 0.0f;
 
 	//posicao Y e X camera	
-	public static float initialPositionYCamera = 3.88f;
-	public static float initialPositionXCamera = 0;
+	public float initialPositionYCamera = 3.85f;
+	public float initialPositionXCamera = 0;
 
 	//velocidade camera
 	private Vector2 velocityCamera;

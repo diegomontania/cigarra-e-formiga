@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         //variaveis no valor padrão
         fruitsInHouse = 0;
 		fruitsInBag = 0;
-		time = 120f;
+		time = 150f;
         MusicScenes.playSound = true;
         pauseGame = false;
 	}
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 		//Atualizando frutas que estao na bag // tempo // e itens que estao em casa
 		textInBag.text = "Mochila: " + fruitsInBag;
 		textInHouse.text = "Estoque: " + fruitsInHouse;
-		textTime.text = "Tempo: " + time.ToString("0"); //convertendo para string para o tempo nao ficar quebrado
+		textTime.text = "Tempo: " + time.ToString("0");
 
 		//diminuindo o tempo a cada 1 segundo
 		time -= Time.deltaTime;
@@ -88,11 +88,11 @@ public class GameManager : MonoBehaviour
         }
 
         //easteregg
-        if (Player.easterEgg >= 5000)
+        if (Player.easterEgg >= 50)
         {
             easterEgg.SetActive(true);
             Player.easterEgg = 0;
+			//Debug.Log(Player.easterEgg);
         }
-
     }
 }

@@ -7,7 +7,7 @@ public class Cicada : MonoBehaviour
     private Animator animator;
 
     //velocidade abelha
-    public float velocityEnemy;
+    public float velocity;
 
     //colisor
     private BoxCollider2D boxCollider2D;
@@ -15,6 +15,9 @@ public class Cicada : MonoBehaviour
     //posicao maxima e minima de movimentacao da abelha
     public float maxPositionX;
     public float minPositionX;
+
+    //objeto do jogador
+    public GameObject Player;
 
     void Start()
     {
@@ -32,7 +35,7 @@ public class Cicada : MonoBehaviour
     void Moviment()
     {
         //movimentando abelha
-        this.transform.Translate(velocityEnemy * Time.deltaTime, 0, 0f);
+        this.transform.Translate(velocity * Time.deltaTime, 0, 0f);
 
         //se chegar a posicao maxima a abelha sera flipada
         if (this.transform.localPosition.x >= maxPositionX)
@@ -51,20 +54,17 @@ public class Cicada : MonoBehaviour
     void StopCicada()
     {
         animator.SetTrigger("dancingCicadaTrigger");
-        Player.dancingPlayer = true; // fazendo jogador dançar
-        Player.velocityPlayer = 0; // parando jogador
-        velocityEnemy = 0; // parando inimigo
+        Player.GetComponent<Player>().TriggerDancing = true; // fazendo jogador dançar
+        velocity = 0;
         StartCoroutine(EnumratorCicadaDefalt());
         boxCollider2D.enabled = false; //desabilitando collider da cigarra
     }
 
-    //esperando X segundos para voltar a cigarra ao normal e player
+    //esperando X segundos para voltar a cigarra ao normal
     IEnumerator EnumratorCicadaDefalt()
     {
         yield return new WaitForSeconds(5.0f);
-        Player.dancingPlayer = false;
-        Player.velocityPlayer = 5;
-        velocityEnemy = 3;
+        velocity = 3;
         Moviment();
         StartCoroutine(EnumratorEnaableCollider()); // habilitando collider da cicada
         animator.SetTrigger("runningCicadaTrigger");

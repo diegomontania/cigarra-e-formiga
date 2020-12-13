@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bee : MonoBehaviour 
+public class EnemyBee : MonoBehaviour 
 {
-	//velocidade abelha
-	public float velocityEnemy;
+    //velocidade abelha
+    public float velocityBee;
 
 	//posicao maxima e minima de movimentacao da abelha
 	public float maxPositionX;
@@ -12,7 +12,7 @@ public class Bee : MonoBehaviour
 
 	void Start()
 	{
-		
+		velocityBee = 3;
 	}
 
 	void Update () 
@@ -24,7 +24,7 @@ public class Bee : MonoBehaviour
 	void Moviment()
 	{
 		//movimentando abelha
-		this.transform.Translate(velocityEnemy * Time.deltaTime, 0, 0f);
+		this.transform.Translate(velocityBee * Time.deltaTime, 0, 0f);
 
 		//se chegar a posicao maxima a abelha sera flipada
 		if(this.transform.localPosition.x >= maxPositionX)
@@ -37,14 +37,4 @@ public class Bee : MonoBehaviour
 			transform.eulerAngles = new Vector2 (0, 0);
 		}
 	}
-
-
-	void OnCollisionEnter2D (Collision2D other)
-	{
-		if (other.gameObject.tag == "player")
-		{
-			
-		}
-	}
-
 }//fecha classe
