@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
 	
 	//Isto é o que você precisa mostrar, no inspetor.
 	public Platform platform;
-	private bool mobile = false;
-	private bool web = false;
+	private bool mobile;
+	private bool web;
 	
 	//variavel para o objeto vazio no pe do player
 	public Transform ground;
@@ -79,14 +79,11 @@ public class Player : MonoBehaviour
 		//valores padrao
 		animator.Play("idle");
 		lifePlayer = 3;
-		dancingPlayer = false;
 		velocityPlayer = 5;
 		easterEgg = 0;
 		cameraAdjustment = 6.2f;
 		lifePlayer = 3;
 		idle = true;
-		disableKeyboard = false;
-		animationMobile = false;
 
 		//Escolhendo plataforma pelo enum
 		switch (platform)
@@ -227,7 +224,6 @@ public class Player : MonoBehaviour
 		animator.SetBool("dancingPlayer", true);
 		StartCoroutine(StopDancing());
 	}
-
 	IEnumerator StopDancing()
 	{
 		yield return new WaitForSeconds(5.0f);
@@ -245,7 +241,6 @@ public class Player : MonoBehaviour
 			StartCoroutine(EnumeratorDeadPlayer());
 		}
 	}
-
 	IEnumerator EnumeratorDeadPlayer()
 	{
 		yield return new WaitForSeconds(3.0f);
@@ -296,8 +291,9 @@ public class Player : MonoBehaviour
 		{
 			//recebendo o valor dos itens que estao na mochila e passando para a casa 
 			//e resetando o valor dos itens na mochila e resetando a velocidade do jogador
-			GameManager.fruitsInHouse = GameManager.fruitsInHouse + GameManager.fruitsInBag;
+			GameManager.fruitsInHouse += GameManager.fruitsInBag;
 			GameManager.fruitsInBag = 0;
+			GameManager.time = 120;
 			velocityPlayer = 5;
 		}   
 	}

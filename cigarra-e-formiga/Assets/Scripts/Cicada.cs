@@ -28,16 +28,14 @@ public class Cicada : MonoBehaviour
 
     void Update()
     {
-        //movimentacao dos inimigos
         Moviment();
     }
 
     void Moviment()
     {
-        //movimentando abelha
+        //movimentando
         this.transform.Translate(velocity * Time.deltaTime, 0, 0f);
 
-        //se chegar a posicao maxima a abelha sera flipada
         if (this.transform.localPosition.x >= maxPositionX)
         {
             //Flipando personagem, como ele esta sendo flipado aqui automaticamente ele ira andar para o lado oposto
@@ -51,17 +49,15 @@ public class Cicada : MonoBehaviour
 
     //parando a cigarra e o player 
     //e mudando animacao ao encostar no player
-    void StopCicada()
+    void Dancing()
     {
         animator.SetTrigger("dancingCicadaTrigger");
         Player.GetComponent<Player>().TriggerDancing = true; // fazendo jogador dançar
         velocity = 0;
-        StartCoroutine(EnumratorCicadaDefalt());
+        StartCoroutine(StopDancing());
         boxCollider2D.enabled = false; //desabilitando collider da cigarra
     }
-
-    //esperando X segundos para voltar a cigarra ao normal
-    IEnumerator EnumratorCicadaDefalt()
+    IEnumerator StopDancing()
     {
         yield return new WaitForSeconds(5.0f);
         velocity = 3;
@@ -78,9 +74,9 @@ public class Cicada : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.CompareTag("player"))
         {
-            StopCicada();
+            Dancing();
         }
     }
 }

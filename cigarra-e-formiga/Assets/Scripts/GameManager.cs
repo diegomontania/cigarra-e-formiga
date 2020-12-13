@@ -29,9 +29,8 @@ public class GameManager : MonoBehaviour
         //variaveis no valor padrão
         fruitsInHouse = 0;
 		fruitsInBag = 0;
-		time = 150f;
+		time = 120f;
         MusicScenes.playSound = true;
-        pauseGame = false;
 	}
 	
 	// Update is called once per frame
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
 
         //easteregg
-        if (Player.easterEgg >= 50)
+        if (Player.easterEgg >= 3000)
         {
             easterEgg.SetActive(true);
             Player.easterEgg = 0;
